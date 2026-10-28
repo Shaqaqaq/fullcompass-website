@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <title>Full Compass mark</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path id="Tile" d="M121 31 L391 31 C440.706 31 481 71.294 481 121 L481 391 C481 440.706 440.706 481 391 481 L121 481 C71.294 481 31 440.706 31 391 L31 121 C31 71.294 71.294 31 121 31 Z" fill="#1f3a5f"/>
+    <path id="Face" d="M91 256 C91 164.873 164.873 91 256 91 C347.127 91 421 164.873 421 256 C421 347.127 347.127 421 256 421 C164.873 421 91 347.127 91 256 Z" fill="#ffffff"/>
+    <path id="Ring" d="M116 256 C116 178.68 178.68 116 256 116 C333.32 116 396 178.68 396 256 C396 333.32 333.32 396 256 396 C178.68 396 116 333.32 116 256 Z" fill="none" stroke="#1f3a5f" stroke-width="10" stroke-miterlimit="10"/>
+    <path id="Tick_N" data-name="Tick N" d="M249.5 111 L262.5 111 L262.5 152 L249.5 152 Z" fill="#1f3a5f"/>
+    <path id="Tick_S" data-name="Tick S" d="M249.5 360 L262.5 360 L262.5 401 L249.5 401 Z" fill="#1f3a5f"/>
+    <path id="Tick_W" data-name="Tick W" d="M111 249.5 L152 249.5 L152 262.5 L111 262.5 Z" fill="#1f3a5f"/>
+    <path id="Tick_E" data-name="Tick E" d="M360 249.5 L401 249.5 L401 262.5 L360 262.5 Z" fill="#1f3a5f"/>
+    <path id="Needle_north" data-name="Needle north" d="M256 156 L283 256 L229 256 Z" fill="#c42828"/>
+    <path id="Needle_south" data-name="Needle south" d="M229 256 L283 256 L256 356 Z" fill="#1f3a5f"/>
+    <path id="Pivot" d="M245 256 C245 249.925 249.925 245 256 245 C262.075 245 267 249.925 267 256 C267 262.075 262.075 267 256 267 C249.925 267 245 262.075 245 256 Z" fill="#ffffff"/>
+  </g>
+</svg>

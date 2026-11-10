@@ -10,13 +10,30 @@
     "line": "Your clients, your deadlines, and every app one click away.",
     "summary": "Where the day starts: the practice's clients across every app, what is due, and each app one click away, opened on the client you are looking at.",
     "points": [
-      ["One client record", "A company's, partnership's or sole trader's details are entered once and set up in the apps you tick."],
-      ["Deadlines for the practice", "Accounts to Companies House, company tax returns and corporation tax, Self Assessment returns and payments, and payroll submissions, each showing how its date is worked out."],
-      ["A card for each client", "What every app holds for them, with a button to open that app on the client."],
-      ["Users and sign-in", "Shared by the apps, with each person's apps and clients."],
-      ["Backups and updates", "Backup and restore of the data file, and updates for every app."]
+      [
+        "One client record",
+        "A company's, partnership's or sole trader's details are entered once and set up in the apps you tick."
+      ],
+      [
+        "Deadlines for the practice",
+        "Accounts to Companies House, company tax returns and corporation tax, Self Assessment returns and payments, and payroll submissions, each showing how its date is worked out."
+      ],
+      [
+        "A card for each client",
+        "What every app holds for them, with a button to open that app on the client."
+      ],
+      [
+        "Users and sign-in",
+        "Shared by the apps, with each person's apps and clients."
+      ],
+      [
+        "Backups and updates",
+        "Backup and restore of the data file, and updates for every app."
+      ]
     ],
-    "links": "Every other app opens from here, already on the client you chose."
+    "links": "Every other app opens from here, already on the client you chose.",
+    "tone": "#1f3a5f",
+    "shade": "dark"
   },
   {
     "slug": "accounts",
@@ -29,13 +46,30 @@
     "line": "Year-end accounts from the trial balance.",
     "summary": "Year-end accounts from the trial balance, on charts of accounts for limited companies, sole traders, partnerships and farms.",
     "points": [
-      ["Postings and the trial balance", "Posting entries, journals, opening balances brought forward, the trial balance and the nominal ledger."],
-      ["Statutory accounts for companies", "Micro-entity (FRS 105), small (FRS 102 Section 1A), dormant, and the filleted copy for Companies House. FRS 102 in full, for larger companies, is being added."],
-      ["Sole traders and partnerships", "Their accounts, with management reports and lead schedules."],
-      ["iXBRL and Companies House", "Accounts in iXBRL, and filing at Companies House: now with Companies House's test service, and its live service once Companies House has approved the software."],
-      ["Every report on A4", "To print, save as PDF, or export to Word or Excel."]
+      [
+        "Postings and the trial balance",
+        "Posting entries, journals, opening balances brought forward, the trial balance and the nominal ledger."
+      ],
+      [
+        "Statutory accounts for companies",
+        "Micro-entity (FRS 105), small (FRS 102 Section 1A), dormant, and the filleted copy for Companies House. FRS 102 in full, for larger companies, is being added."
+      ],
+      [
+        "Sole traders and partnerships",
+        "Their accounts, with management reports and lead schedules."
+      ],
+      [
+        "iXBRL and Companies House",
+        "Accounts in iXBRL, and filing at Companies House: now with Companies House's test service, and its live service once Companies House has approved the software."
+      ],
+      [
+        "Every report on A4",
+        "To print, save as PDF, or export to Word or Excel."
+      ]
     ],
-    "links": "Takes the year-end trial balance from Books, and hands its figures on to Business Tax."
+    "links": "Takes the year-end trial balance from Books, and hands its figures on to Business Tax.",
+    "tone": "#f7f4ec",
+    "shade": "light"
   },
   {
     "slug": "books",
@@ -48,13 +82,30 @@
     "line": "Bookkeeping and VAT returns on the accounts' own chart.",
     "summary": "Bookkeeping and VAT returns for the practice's clients, kept on the client's own Accounts chart, so the year-end trial balance goes straight into the accounts, line for line.",
     "points": [
-      ["Day-to-day bookkeeping", "Customers and suppliers, invoices, credit notes, bills, receipts and payments, bank accounts and journals."],
-      ["VAT returns from the books", "With cash accounting, the flat rate scheme, annual accounting, reverse charges, partial exemption and bad debt relief."],
-      ["Making Tax Digital for VAT", "Built, and being tested before it is used with HMRC."],
-      ["Reports", "Profit and loss, balance sheet, aged debtors and creditors, a cash flow planner and management packs, with exports to Excel and CSV."],
-      ["An audit trail that stays whole", "Posted entries are never changed or deleted: corrections are made by reversal, void or credit note."]
+      [
+        "Day-to-day bookkeeping",
+        "Customers and suppliers, invoices, credit notes, bills, receipts and payments, bank accounts and journals."
+      ],
+      [
+        "VAT returns from the books",
+        "With cash accounting, the flat rate scheme, annual accounting, reverse charges, partial exemption and bad debt relief."
+      ],
+      [
+        "Making Tax Digital for VAT",
+        "Built, and being tested before it is used with HMRC."
+      ],
+      [
+        "Reports",
+        "Profit and loss, balance sheet, aged debtors and creditors, a cash flow planner and management packs, with exports to Excel and CSV."
+      ],
+      [
+        "An audit trail that stays whole",
+        "Posted entries are never changed or deleted: corrections are made by reversal, void or credit note."
+      ]
     ],
-    "links": "Its trial balance transfers to Accounts at the year end."
+    "links": "Its trial balance transfers to Accounts at the year end.",
+    "tone": "#e2b866",
+    "shade": "light"
   },
   {
     "slug": "business-tax",
@@ -67,13 +118,30 @@
     "line": "Tax computations and CT600 returns from the accounts.",
     "summary": "Corporation tax computations and returns, taken from the accounts, with a warning whenever the accounts change after the figures were taken.",
     "points": [
-      ["The computation", "Adjustments to profit, capital allowances (pools, the annual investment allowance, full expensing and first-year allowances, structures and buildings), losses and group relief."],
-      ["Gains and reliefs", "Chargeable gains, loans to participators, research and development and creative industry reliefs."],
-      ["The CT600", "With its supplementary pages, printed as HMRC's form, and the online return with the computation in iXBRL, checked against HMRC's own schemas and rules. Online filing is being tested with HMRC's test service."],
-      ["Sole traders and partnerships", "Self-employment pages and the partnership return, passed on to Personal Tax."],
-      ["Each company's tax account", "With payments, interest and quarterly instalments."]
+      [
+        "The computation",
+        "Adjustments to profit, capital allowances (pools, the annual investment allowance, full expensing and first-year allowances, structures and buildings), losses and group relief."
+      ],
+      [
+        "Gains and reliefs",
+        "Chargeable gains, loans to participators, research and development and creative industry reliefs."
+      ],
+      [
+        "The CT600",
+        "With its supplementary pages, printed as HMRC's form, and the online return with the computation in iXBRL, checked against HMRC's own schemas and rules. Online filing is being tested with HMRC's test service."
+      ],
+      [
+        "Sole traders and partnerships",
+        "Self-employment pages and the partnership return, passed on to Personal Tax."
+      ],
+      [
+        "Each company's tax account",
+        "With payments, interest and quarterly instalments."
+      ]
     ],
-    "links": "Takes its figures from Accounts, and passes sole traders' and partners' figures to Personal Tax."
+    "links": "Takes its figures from Accounts, and passes sole traders' and partners' figures to Personal Tax.",
+    "tone": "#2f4d78",
+    "shade": "dark"
   },
   {
     "slug": "personal-tax",
@@ -86,13 +154,30 @@
     "line": "Self Assessment for individuals, sole traders and partners.",
     "summary": "Self Assessment for individuals, sole traders and partners, from 2020-21 to 2026-27, each year on its own rules.",
     "points": [
-      ["The return and its pages", "Employment, self-employment, partnerships, property, savings and dividends, foreign income, capital gains, residence and more."],
-      ["The calculation", "Income tax at UK, Scottish and Welsh rates, Class 2 and Class 4 National Insurance, student loans, the High Income Child Benefit Charge and payments on account."],
-      ["Figures from Business Tax", "Sole traders' and partners' figures are taken across, with a warning if the accounts change afterwards."],
-      ["Forms and online returns", "Returns printed on HMRC's own forms, and online returns checked against HMRC's schemas. Online filing is being tested with HMRC's test service."],
-      ["Checked against HMRC's cases", "Its calculations are checked against HMRC's own Self Assessment test cases."]
+      [
+        "The return and its pages",
+        "Employment, self-employment, partnerships, property, savings and dividends, foreign income, capital gains, residence and more."
+      ],
+      [
+        "The calculation",
+        "Income tax at UK, Scottish and Welsh rates, Class 2 and Class 4 National Insurance, student loans, the High Income Child Benefit Charge and payments on account."
+      ],
+      [
+        "Figures from Business Tax",
+        "Sole traders' and partners' figures are taken across, with a warning if the accounts change afterwards."
+      ],
+      [
+        "Forms and online returns",
+        "Returns printed on HMRC's own forms, and online returns checked against HMRC's schemas. Online filing is being tested with HMRC's test service."
+      ],
+      [
+        "Checked against HMRC's cases",
+        "Its calculations are checked against HMRC's own Self Assessment test cases."
+      ]
     ],
-    "links": "Takes sole traders' and partners' figures from Business Tax."
+    "links": "Takes sole traders' and partners' figures from Business Tax.",
+    "tone": "#efe9dc",
+    "shade": "light"
   },
   {
     "slug": "pay",
@@ -105,12 +190,29 @@
     "line": "Payroll for client companies and their directors.",
     "summary": "Payroll for the practice's client companies and their directors, with each company linked to its client in the suite.",
     "points": [
-      ["PAYE and National Insurance", "PAYE, National Insurance and student loans for 2026-27, checked against HMRC's own test data."],
-      ["Every pay pattern", "Weekly, fortnightly, four-weekly and monthly pay, directors' National Insurance, starters and leavers."],
-      ["Statutory pay", "Sick, maternity, paternity, adoption, shared parental, bereavement and neonatal care pay."],
-      ["Pensions", "Workplace pensions and automatic enrolment."],
-      ["Submissions and paperwork", "Full Payment Submissions and Employer Payment Summaries built to HMRC's specifications and checked with HMRC's own schemas; payslips, P45s, P60s, the P32 and payroll reports."]
+      [
+        "PAYE and National Insurance",
+        "PAYE, National Insurance and student loans for 2026-27, checked against HMRC's own test data."
+      ],
+      [
+        "Every pay pattern",
+        "Weekly, fortnightly, four-weekly and monthly pay, directors' National Insurance, starters and leavers."
+      ],
+      [
+        "Statutory pay",
+        "Sick, maternity, paternity, adoption, shared parental, bereavement and neonatal care pay."
+      ],
+      [
+        "Pensions",
+        "Workplace pensions and automatic enrolment."
+      ],
+      [
+        "Submissions and paperwork",
+        "Full Payment Submissions and Employer Payment Summaries built to HMRC's specifications and checked with HMRC's own schemas; payslips, P45s, P60s, the P32 and payroll reports."
+      ]
     ],
-    "links": "Each payroll company is linked to its client on the start page, where its payroll deadlines appear."
+    "links": "Each payroll company is linked to its client on the start page, where its payroll deadlines appear.",
+    "tone": "#16263d",
+    "shade": "dark"
   }
 ]

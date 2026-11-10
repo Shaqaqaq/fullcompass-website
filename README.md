@@ -11,14 +11,13 @@ https://updates.fullcompass.co.uk/ (its own repository, `fullcompass-updates`).
 | Path | What it is |
 | --- | --- |
 | `src/pages/*.html` | Each page's content, with its title and description in a comment at the top |
-| `src/modules.json` | The six apps: name, summary, what each does. The build makes the gallery's pictures, the rooms list and a room for each (`apps/<slug>/`, from `src/partials/room.html`) from it |
+| `src/modules.json` | The six apps: name, summary, what each does. The build makes the home page's compass and tiles and a page for each app (`apps/<slug>/`, from `src/partials/app.html`) from it |
 | `src/partials/` | The shared `<head>`, header and footer |
 | `tools/build.py` | Builds the pages and checks every internal link and image |
 | `index.html`, `apps/`, `download/`, `whats-new/`, `help/`, `privacy/`, `contact/`, `404.html` | The built pages GitHub Pages serves (don't edit these: edit `src/` and build) |
 | `assets/site.css` | The one stylesheet: light and dark by the visitor's system setting |
 | `assets/site.js` | Reads `https://updates.fullcompass.co.uk/updates.json` (the signed list the start page reads) for the setup's version, size, SHA-256 and link, and each app's release notes. The pages keep a written fallback if it can't be read |
-| `assets/gallery.js` | The home page's walk down the gallery corridor: scrolling walks, the arrows step between pictures, each picture opens its app's room. Without it, on small screens and with reduced motion, the home page is a flat gallery wall |
-| `assets/img/gallery/` | The six pictures, drawn in VectorCraft (`design/gallery-artworks.py` draws them through its control channel; the documents are `design/gallery-*.vectorcraft`) |
+| `assets/img/art/` | A picture for each app, drawn in VectorCraft (`design/gallery-artworks.py` draws them through its control channel; the documents are `design/gallery-*.vectorcraft`) |
 | `assets/img/` | The compass mark (drawn in VectorCraft), the sharing card and the apps' icons |
 | `design/` | The VectorCraft documents for the mark and the sharing card |
 | `CNAME` | `www.fullcompass.co.uk`, for GitHub Pages |

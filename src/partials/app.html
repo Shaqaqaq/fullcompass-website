@@ -1,0 +1,43 @@
+<!--
+title: {{name}}
+description: {{summary}}
+nav: apps
+-->
+<main id="main">
+
+<div class="app-hero {{shade}}" style="--tone:{{tone}}">
+  <div class="wrap">
+    <div class="app-words">
+      <p class="back"><a href="/apps/">&larr; All six apps</a></p>
+      <p class="eyebrow"><b>{{num}}</b> {{kind}}</p>
+      <h1>{{name}}</h1>
+      <p class="lead">{{summary}}</p>
+      <div class="actions">
+        <a class="button" href="/download/">Download the suite</a>
+        <a class="button secondary" href="/apps/{{next_slug}}/">Next: {{next_name}} &rarr;</a>
+      </div>
+    </div>
+    <div class="poster"><img src="/assets/img/art/{{art}}.svg" width="600" height="800" alt=""></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><b>What it does</b> {{kind}}</p>
+    <ol class="points">
+{{points}}
+    </ol>
+    <p class="works-with"><span>Works with</span> {{links}}</p>
+    <p class="fine">Full Compass is a test version: it has not been recognised or approved by HMRC or Companies House, so please don't use it to file real returns or accounts yet.</p>
+  </div>
+</section>
+
+<nav class="app-nav" aria-label="Other apps">
+  <div class="wrap">
+    <a href="/apps/{{prev_slug}}/" rel="prev"><span>&larr; {{prev_num}}</span><strong>{{prev_name}}</strong></a>
+    <a href="/apps/" class="mid"><span>All six</span><strong>The apps</strong></a>
+    <a href="/apps/{{next_slug}}/" rel="next"><span>{{next_num}} &rarr;</span><strong>{{next_name}}</strong></a>
+  </div>
+</nav>
+
+</main>

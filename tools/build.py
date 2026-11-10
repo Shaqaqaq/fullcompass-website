@@ -13,15 +13,15 @@ A page starts with a comment of settings:
     description: One sentence for search results and link previews.
     nav: download        (which header link is the current page; optional)
     script: yes          (load assets/site.js, for pages that read the update site; optional)
-    gallery: yes         (load assets/gallery.js, the walk down the corridor; optional)
     -->
 
-The six modules are in src/modules.json. Each gets a room, apps/<slug>/, from src/partials/room.html, and pages can
-place {{gallery}} (the corridor's framed pieces) and {{rooms}} (a plain list of the rooms).
+The six apps are in src/modules.json. Each gets a page, apps/<slug>/, from src/partials/app.html, and pages can
+place {{tiles}} (a tile for each app) and, for the home page's compass, {{stations}} and {{readings}}.
 """
 import hashlib
 import html
 import json
+import math
 import pathlib
 import re
 import sys
@@ -69,43 +69,41 @@ def modules():
     return json.loads((SRC / "modules.json").read_text())
 
 
-def gallery_pieces(mods):
-    """The corridor's pieces: odd numbers hang on the left, even on the right."""
-    out = []
+def dial(mods):
+    """The compass on the home page: a station for each app round the ring, and what the needle reads for each."""
+    stations, readings = [], []
     for i, m in enumerate(mods):
-        side = "left" if i % 2 == 0 else "right"
-        out.append(
-            f'<li class="piece {side}" id="room-{i + 1}" style="--i:{i}" data-name="{esc(m["name"])}" data-kind="{esc(m["kind"])}">\n'
-            f'  <a href="/apps/{m["slug"]}/">\n'
-            f'    <span class="frame" style="view-transition-name: art-{m["slug"]}"><img src="/assets/img/gallery/{m["art"]}.svg" width="600" height="800" alt="&ldquo;{esc(m["piece"])}&rdquo;, the artwork for {esc(m["name"])}."></span>\n'
-            f'    <span class="plaque"><span class="num">{i + 1:02d}</span><span class="kind">{esc(m["kind"])}</span>'
-            f'<strong>{esc(m["name"])}</strong><span class="line">{esc(m["line"])}</span><span class="enter">Enter the room</span></span>\n'
-            f'  </a>\n</li>')
-    return "\n".join(out)
+        angle = math.radians(-90 + 60 * i)
+        left, top = 50 + 41 * math.cos(angle), 50 + 41 * math.sin(angle)
+        stations.append(f'<a class="station s{i}" href="/apps/{m["slug"]}/" style="left:{left:.2f}%;top:{top:.2f}%">{esc(m["short"])}</a>')
+        readings.append(
+            f'<p class="reading r{i}"><span class="num">{i + 1:02d} &middot; {esc(m["kind"])}</span>'
+            f'<strong>{esc(m["name"])}</strong><span>{esc(m["line"])}</span></p>')
+    return "\n".join(stations), "\n".join(readings)
 
 
-def room_list(mods):
+def tiles(mods):
     out = []
     for i, m in enumerate(mods):
         out.append(
-            f'<li><a class="room-row" href="/apps/{m["slug"]}/">'
-            f'<span class="num">{i + 1:02d}</span>'
-            f'<img src="/assets/img/gallery/{m["art"]}.svg" width="600" height="800" alt="">'
-            f'<span><span class="kind">{esc(m["kind"])}</span><strong>{esc(m["name"])}</strong><span class="line">{esc(m["summary"])}</span></span>'
+            f'<li><a class="tile {m["shade"]}" href="/apps/{m["slug"]}/" style="--tone:{m["tone"]}">'
+            f'<span class="art"><img src="/assets/img/art/{m["art"]}.svg" width="600" height="800" alt=""></span>'
+            f'<span class="words"><span class="num">{i + 1:02d} &middot; {esc(m["kind"])}</span>'
+            f'<strong>{esc(m["name"])}</strong><span class="line">{esc(m["line"])}</span><span class="more">Read more</span></span>'
             f'</a></li>')
     return "\n".join(out)
 
 
-def room_pages(mods):
-    """A page of source for each module's room, from src/partials/room.html."""
-    template = (SRC / "partials" / "room.html").read_text()
+def app_pages(mods):
+    """A page of source for each app, from src/partials/app.html."""
+    template = (SRC / "partials" / "app.html").read_text()
     pages = {}
     for i, m in enumerate(mods):
         prev, nxt = mods[i - 1], mods[(i + 1) % len(mods)]
         points = "\n".join(f'      <li><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in m["points"])
         fields = {
             "num": f"{i + 1:02d}", "n": str(i + 1), "slug": m["slug"], "art": m["art"], "piece": esc(m["piece"]), "kind": esc(m["kind"]),
-            "name": esc(m["name"]), "summary": esc(m["summary"]), "links": esc(m["links"]), "points": points,
+            "name": esc(m["name"]), "summary": esc(m["summary"]), "links": esc(m["links"]), "points": points, "tone": m["tone"], "shade": m["shade"],
             "prev_slug": prev["slug"], "prev_name": esc(prev["short"]), "prev_num": f"{(i - 1) % len(mods) + 1:02d}",
             "next_slug": nxt["slug"], "next_name": esc(nxt["short"]), "next_num": f"{(i + 1) % len(mods) + 1:02d}",
         }
@@ -123,16 +121,17 @@ def build():
     built = {}
     mods = modules()
     sources = {page.name: page.read_text() for page in sorted((SRC / "pages").glob("*.html"))}
-    sources.update(room_pages(mods))
+    sources.update(app_pages(mods))
+    stations, readings = dial(mods)
     for name, source in sources.items():
-        source = source.replace("{{gallery}}", gallery_pieces(mods)).replace("{{rooms}}", room_list(mods))
+        source = source.replace("{{stations}}", stations).replace("{{readings}}", readings).replace("{{tiles}}", tiles(mods))
         values, body = settings(source, name)
         out, path = target(name)
         title = values["title"]
         full_title = "Full Compass Accountancy Suite" if name == "index.html" else f"{title} | Full Compass Accountancy Suite"
         h = head.replace("{{title}}", html.escape(full_title)).replace("{{description}}", html.escape(values["description"]))
         h = h.replace("{{url}}", SITE + path)
-        scripts = [f'<script src="/assets/{file}.js" defer></script>' for key, file in (("script", "site"), ("gallery", "gallery")) if values.get(key) == "yes"]
+        scripts = [f'<script src="/assets/{file}.js" defer></script>' for key, file in (("script", "site"),) if values.get(key) == "yes"]
         if scripts:
             h = h.replace("{{script}}", "\n".join(scripts))
         else:
@@ -142,7 +141,7 @@ def build():
         if current:
             nav = nav.replace(f'data-nav="{current}"', 'aria-current="page"')
         nav = re.sub(r' data-nav="[a-z-]+"', "", nav)
-        for asset in ("site.css", "site.js", "gallery.js"):
+        for asset in ("site.css", "site.js"):
             h = h.replace(f'/assets/{asset}"', f'/assets/{asset}?v={stamp(asset)}"')
         text = "<!doctype html>\n" + '<html lang="en-GB">\n' + h + "<body>\n" + nav + body.strip() + "\n" + footer + "</body>\n</html>\n"
         built[out] = text

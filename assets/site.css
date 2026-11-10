@@ -3,13 +3,13 @@
 
 :root {
   color-scheme: light;
-  --paper: #faf9f6;
+  --paper: #f5f3ee;
   --surface: #ffffff;
-  --sunk: #f2f0eb;
-  --ink: #1b2430;
-  --muted: #545f6c;
-  --line: #e1ddd5;
-  --line-strong: #c9c3b8;
+  --sunk: #ece8df;
+  --ink: #1e2532;
+  --muted: #5f5a4e;
+  --line: #e4dfd4;
+  --line-strong: #cfc8ba;
   --navy: #1f3a5f;
   --heading: #1f3a5f;
   --link: #1f4a7a;
@@ -28,18 +28,27 @@
   --wide: 1120px;
   --text: 720px;
   --gutter: 24px;
+  --gold: #e2b866;
+  --wall: #efece5;
+  --panel: #f9f7f2;
+  --floor: #cdc6b6;
+  --ceil: #fbfaf7;
+  --frame: #1c2230;
+  --mount: #fbf9f3;
+  --lamp: rgba(255, 250, 235, 0.9);
+  --haze: rgba(245, 243, 238, 0.55);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --paper: #10151b;
-    --surface: #161d25;
-    --sunk: #0c1116;
-    --ink: #e6eaef;
-    --muted: #a3adb9;
-    --line: #26303b;
-    --line-strong: #3a4654;
+    --paper: #0f1216;
+    --surface: #161a20;
+    --sunk: #0b0e11;
+    --ink: #e4e8ee;
+    --muted: #9aa4b2;
+    --line: #29303a;
+    --line-strong: #3a4350;
     --navy: #1f3a5f;
     --heading: #c9daf0;
     --link: #a9c8ee;
@@ -50,7 +59,16 @@
     --note: #241e12;
     --note-line: #6b5527;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  }
+      --gold: #e2b866;
+    --wall: #171b22;
+    --panel: #20262f;
+    --floor: #0d1014;
+    --ceil: #101318;
+    --frame: #07090c;
+    --mount: #ebe6da;
+    --lamp: rgba(255, 236, 190, 0.2);
+    --haze: rgba(15, 18, 22, 0.6);
+}
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -318,3 +336,229 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 .app-body ul:not(.tags) { list-style: disc; }
 .app-body ul.tags { padding-left: 0; }
+
+/* ==========================================================================
+   The gallery
+   The home page is a corridor with a framed picture for each app. Without the script, on small screens and with
+   reduced motion it is a flat gallery wall; assets/gallery.js adds the class "walk" to <html> for the corridor.
+   ========================================================================== */
+
+@view-transition { navigation: auto; }
+
+.frame {
+  display: block; background: var(--mount); padding: 6.5%; border: 10px solid var(--frame);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.26), 0 3px 8px rgba(0, 0, 0, 0.18);
+}
+.frame img { display: block; width: 100%; height: auto; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2); }
+
+.plaque { display: grid; gap: 3px; margin-top: 22px; padding-left: 14px; border-left: 3px solid var(--gold); }
+.plaque .num, .plaque .kind { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.plaque .num { color: var(--red); }
+.plaque strong { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; line-height: 1.2; color: var(--heading); }
+.plaque .line { font-size: 0.95rem; color: var(--muted); }
+.plaque .enter { margin-top: 8px; font-size: 0.92rem; font-weight: 600; color: var(--link); }
+.plaque .enter::after { content: " \2192"; }
+
+/* The flat gallery wall */
+
+.hall { padding: 64px 0 0; border-top: 0; background: linear-gradient(var(--lamp), transparent 420px), var(--wall); }
+.hall .view { max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter); }
+.intro { max-width: 40em; }
+.intro h1 { margin-bottom: 0.35em; }
+.walk-hint, .walk-in, .swipe-hint { display: none; }
+.pieces { list-style: none; margin: 56px 0 0; padding: 0 0 72px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px 56px; }
+.piece { margin: 0; }
+.piece a { display: block; color: inherit; text-decoration: none; }
+.piece .frame { transition: transform 180ms ease, box-shadow 180ms ease; }
+.piece a:hover .frame, .piece a:focus-visible .frame { transform: translateY(-6px); box-shadow: 0 30px 54px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.18); }
+.piece a:hover .enter, .piece a:focus-visible .enter { text-decoration: underline; }
+.endwall {
+  margin: 0 calc(50% - 50vw); padding: 64px var(--gutter); background: var(--navy); color: #ffffff; text-align: center;
+  display: grid; justify-items: center; gap: 10px;
+}
+.endwall h2 { color: #ffffff; margin: 8px 0 0; }
+.endwall p { margin: 0; max-width: 34em; color: #dfe6ee; }
+.endwall img { width: 96px; height: 96px; }
+.button.gold { background: var(--gold); color: #16263d; margin-top: 14px; }
+.button.gold:hover { background: #edc983; }
+.seg { display: none; }
+
+/* The corridor. Lengths inside .world are the corridor's own units, scaled to the window by --s. */
+
+.walk .hall { padding: 0; height: calc(100vh + var(--track, 4000px)); background: var(--wall); }
+.walk .hall .view {
+  position: sticky; top: 0; height: 100vh; max-width: none; margin: 0; padding: 0; overflow: hidden;
+  perspective: calc(1000px * var(--s, 1)); background: var(--wall);
+}
+.walk .world {
+  position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d;
+  transform: scale3d(var(--s, 1), var(--s, 1), var(--s, 1)) rotateY(var(--look, 0deg)) translateZ(var(--walk, 0px));
+  will-change: transform;
+}
+.walk .seg { display: block; position: absolute; pointer-events: none; }
+.walk .seg.wl, .walk .seg.wr {
+  width: 1400px; height: 900px; left: -700px; top: -450px;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.22) 0 5px, var(--panel) 5px 36px, rgba(0, 0, 0, 0.1) 36px 38px, transparent 38px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.07), transparent 26%),
+    var(--wall);
+}
+.walk .seg.wl { transform: translate3d(-900px, 0, calc(var(--k) * -1400px - 700px)) rotateY(90deg); }
+.walk .seg.wr { transform: translate3d(900px, 0, calc(var(--k) * -1400px - 700px)) rotateY(-90deg); }
+.walk .seg.fl, .walk .seg.ce { width: 1800px; height: 1400px; left: -900px; top: -700px; }
+.walk .seg.fl {
+  transform: translate3d(0, 450px, calc(var(--k) * -1400px - 700px)) rotateX(90deg);
+  background:
+    linear-gradient(90deg, transparent calc(50% - 3px), var(--gold) calc(50% - 3px) calc(50% + 3px), transparent calc(50% + 3px)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2), transparent 28% 72%, rgba(0, 0, 0, 0.2)),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0 2px, transparent 2px 150px),
+    var(--floor);
+}
+.walk .seg.ce {
+  transform: translate3d(0, -450px, calc(var(--k) * -1400px - 700px)) rotateX(-90deg);
+  background:
+    linear-gradient(90deg, var(--ceil), transparent 30% 70%, var(--ceil)),
+    repeating-linear-gradient(0deg, transparent 0 300px, var(--lamp) 300px 360px, transparent 360px 700px),
+    var(--ceil);
+}
+.walk .seg.far { filter: brightness(0.94); }
+
+.walk .pieces { display: block; position: absolute; left: 0; top: 0; margin: 0; padding: 0; transform-style: preserve-3d; }
+.walk .piece {
+  position: absolute; top: -450px; width: 640px; height: 900px;
+  background:
+    radial-gradient(ellipse 62% 46% at 50% 36%, var(--lamp), transparent 72%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.2) 0 5px, transparent 5px),
+    var(--panel);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.walk .piece.left { left: 0; transform-origin: 0 50%; transform: translate3d(-900px, 0, calc(var(--i) * -900px - 1500px)) rotateY(42deg); }
+.walk .piece.right { left: -640px; transform-origin: 100% 50%; transform: translate3d(900px, 0, calc(var(--i) * -900px - 1500px)) rotateY(-42deg); }
+.walk .piece::after { content: ""; position: absolute; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.04)); }
+.walk .piece.left::after { right: 0; }
+.walk .piece.right::after { left: 0; transform: scaleX(-1); }
+.walk .piece a { position: absolute; inset: 0; padding: 92px 118px 0; }
+.walk .piece .plaque { margin-top: 28px; padding-left: 18px; border-left-width: 4px; gap: 4px; }
+.walk .piece .plaque .num, .walk .piece .plaque .kind { font-size: 15px; }
+.walk .piece .plaque strong { font-size: 31px; }
+.walk .piece .plaque .line { font-size: 18px; }
+.walk .piece .plaque .enter { font-size: 18px; margin-top: 8px; }
+.walk .piece a:hover .frame, .walk .piece a:focus-visible .frame { transform: scale(1.035); }
+.walk .piece a:focus-visible { outline: 6px solid var(--gold); outline-offset: -6px; }
+
+.walk .endwall {
+  position: absolute; width: 1800px; height: 900px; left: -900px; top: -450px; margin: 0; padding: 0 200px;
+  transform: translateZ(calc(var(--end, 7800) * -1px)); align-content: center; gap: 18px;
+  background: radial-gradient(ellipse 60% 70% at 50% 45%, #2a4a78, var(--navy) 75%);
+}
+.walk .endwall img { width: 190px; height: 190px; }
+.walk .endwall h2 { font-size: 84px; }
+.walk .endwall p { font-size: 32px; max-width: 30em; }
+.walk .endwall .button { font-size: 30px; padding: 22px 42px; border-radius: 10px; }
+
+/* What lies over the corridor: the welcome, and the caption with its steps */
+
+.walk .hall .view::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: var(--haze); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); opacity: var(--intro, 1);
+}
+.walk .hall .view::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.16));
+}
+.walk .intro {
+  position: absolute; z-index: 3; left: 50%; top: 46%; width: min(92vw, 720px); max-width: none; transform: translate(-50%, -50%);
+  text-align: center; opacity: var(--intro, 1);
+}
+.walk .intro .eyebrow, .walk .intro .actions { justify-content: center; }
+.walk .intro .eyebrow::after { display: none; }
+.walk .intro .lead { margin-left: auto; margin-right: auto; color: var(--ink); }
+.walk .walk-hint { display: block; margin-top: 18px; }
+.walk .walk-in { display: inline-flex; }
+.walk .view.entered .intro, .walk .hall .view.entered::before { visibility: hidden; }
+
+.hud[hidden] { display: none; }
+.hud {
+  position: absolute; z-index: 4; left: 50%; bottom: 26px; transform: translateX(-50%);
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px 14px;
+  width: min(92vw, 520px); padding: 8px 10px 6px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow);
+  opacity: calc(1 - var(--intro, 1)); transition: opacity 120ms linear;
+}
+.hud .caption { margin: 0; text-align: center; font-size: 0.98rem; line-height: 1.25; display: grid; align-content: center; }
+.hud .caption small { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hud .caption a { font-family: var(--serif); font-size: 1.12rem; }
+.hud .step {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--paper); color: var(--heading);
+  font: 600 1.1rem/1 var(--sans); cursor: pointer;
+}
+.hud .step:hover:not(:disabled) { background: var(--sunk); }
+.hud .step:disabled { opacity: 0.35; cursor: default; }
+.hud .dots { grid-column: 1 / -1; list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 4px; }
+.hud .dots li { margin: 0; }
+.hud .dots button { width: 26px; height: 16px; padding: 0; border: 0; background: none; cursor: pointer; }
+.hud .dots button::before { content: ""; display: block; height: 4px; border-radius: 2px; background: var(--line-strong); }
+.hud .dots button[aria-current="true"]::before { background: var(--gold); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); }
+
+/* A room: one app's page */
+
+.room-wall { background: radial-gradient(ellipse 50% 70% at 26% 40%, var(--lamp), transparent 70%), var(--wall); border-bottom: 14px solid var(--floor); padding: 28px 0 72px; }
+.back { margin: 0 0 28px; font-size: 0.95rem; }
+.room-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 72px; align-items: center; }
+.hung { margin: 0; max-width: 380px; justify-self: center; width: 100%; }
+.room-text h1 { font-size: clamp(2.1rem, 1.3rem + 2.6vw, 3.2rem); }
+.room-text .tags { margin-top: 22px; }
+.points { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 56px; counter-reset: pt; }
+.points li { margin: 0; padding-top: 16px; border-top: 1px solid var(--line-strong); counter-increment: pt; }
+.points li::before { content: counter(pt, decimal-leading-zero); display: block; font-family: var(--mono); font-size: 0.78rem; color: var(--red); margin-bottom: 6px; }
+.points h3 { font-size: 1.18rem; margin-bottom: 0.3em; }
+.points p { margin: 0; color: var(--muted); }
+.works-with { margin: 44px 0 14px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 6px; }
+.works-with span { display: block; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.room-nav { border-top: 1px solid var(--line); background: var(--sunk); }
+.room-nav .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.room-nav a { display: grid; gap: 2px; padding: 26px 8px; color: inherit; text-decoration: none; }
+.room-nav a:hover strong { text-decoration: underline; }
+.room-nav a span { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.room-nav a strong { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--heading); }
+.room-nav a.mid { text-align: center; }
+.room-nav a[rel="next"] { text-align: right; }
+
+/* The plain list of rooms */
+
+.room-list { list-style: none; margin: 8px 0 72px; padding: 0; }
+.room-list li { margin: 0; border-top: 1px solid var(--line); }
+.room-list li:last-child { border-bottom: 1px solid var(--line); }
+.room-row { display: grid; grid-template-columns: 34px 66px minmax(0, 1fr); gap: 22px; align-items: center; padding: 22px 0; color: inherit; text-decoration: none; }
+.room-row > .num { font-family: var(--mono); font-size: 0.85rem; color: var(--red); }
+.room-row img { border: 4px solid var(--frame); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); }
+.room-row > span:last-child { display: grid; gap: 2px; }
+.room-row .kind { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.room-row strong { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--heading); }
+.room-row .line { color: var(--muted); font-size: 0.97rem; }
+.room-row:hover strong { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .pieces { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 36px; }
+  .room-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hung { max-width: 300px; justify-self: start; }
+}
+@media (max-width: 640px) {
+  .hall { padding-top: 40px; }
+  /* On a phone the wall is walked sideways */
+  .pieces {
+    display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 36px calc(var(--gutter) * -1) 0;
+    padding: 8px var(--gutter) 48px; scroll-padding: 0 var(--gutter); -webkit-overflow-scrolling: touch;
+  }
+  .piece { flex: 0 0 72%; scroll-snap-align: start; }
+  .swipe-hint { display: block; margin-top: 16px; }
+  .points { grid-template-columns: 1fr; }
+  .room-nav .wrap { grid-template-columns: 1fr 1fr; }
+  .room-nav a.mid { display: none; }
+  .room-row { grid-template-columns: 52px minmax(0, 1fr); gap: 16px; }
+  .room-row > .num { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .piece .frame { transition: none; }
+  @view-transition { navigation: none; }
+}

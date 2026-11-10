@@ -7,8 +7,8 @@
 <meta name="description" content="Independent UK accountancy software for Windows: accounts production, business tax, personal tax, payroll, and bookkeeping with VAT returns, in six apps that share one client list.">
 <link rel="canonical" href="https://www.fullcompass.co.uk/">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#10151b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/assets/img/mark.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
@@ -23,8 +23,9 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Full Compass compass mark beside the words Full Compass Accountancy Suite: accounts, tax, payroll and bookkeeping for UK practices.">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/site.js" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=db57d0ab">
+<script src="/assets/site.js?v=3bb9f54c" defer></script>
+<script src="/assets/gallery.js?v=3cc4b949" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the content</a>
@@ -46,23 +47,77 @@
 </header>
 <main id="main">
 
-<div class="hero">
-  <div class="wrap">
-    <div>
-      <p class="eyebrow"><b>01</b> Full Compass Accountancy Suite</p>
+<section class="hall" id="gallery" aria-label="The gallery: the six apps">
+  <div class="view">
+
+    <div class="intro">
+      <p class="eyebrow"><b>The gallery</b> Full Compass Accountancy Suite</p>
       <h1>Six apps. One client list.</h1>
-      <p class="lead">Independent accountancy software for UK practices: accounts production, business tax, personal tax, payroll, and bookkeeping with VAT returns. Enter a client once, and every app works from the same record, on your own computer.</p>
+      <p class="lead">Independent accountancy software for UK practices: accounts, tax, payroll and bookkeeping, each in a room of its own.</p>
       <div class="actions">
-        <a class="button" href="/download/">
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M9 2h2v9.6l3.3-3.3 1.4 1.4L10 15.4 4.3 9.7l1.4-1.4L9 11.6V2zM3 16h14v2H3z"/></svg>
-          Download for Windows
-        </a>
-        <a class="button secondary" href="/apps/">See the six apps</a>
+        <a class="button walk-in" href="#gallery">Walk in <span aria-hidden="true">&darr;</span></a>
+        <a class="button secondary" href="/download/">Download for Windows</a>
       </div>
-      <p class="fine">Version <span data-fc="setup-version">0.2.7</span> &middot; Windows 10 and 11, 64-bit &middot; one setup installs the apps you choose</p>
+      <p class="fine walk-hint">Scroll, or use the arrow keys, to walk the corridor. Choose a picture to step into its room.</p>
+      <p class="fine swipe-hint">Swipe along the wall, and choose a picture to step into its room.</p>
     </div>
+
+    <div class="world">
+      <ol class="pieces">
+<li class="piece left" id="room-1" style="--i:0" data-name="Full Compass Accountancy Suite" data-kind="Start page">
+  <a href="/apps/start-page/">
+    <span class="frame" style="view-transition-name: art-start-page"><img src="/assets/img/gallery/suite.svg" width="600" height="800" alt="&ldquo;Bearings&rdquo;, the artwork for Full Compass Accountancy Suite."></span>
+    <span class="plaque"><span class="num">01</span><span class="kind">Start page</span><strong>Full Compass Accountancy Suite</strong><span class="line">Your clients, your deadlines, and every app one click away.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+<li class="piece right" id="room-2" style="--i:1" data-name="Full Compass Accounts" data-kind="Accounts production">
+  <a href="/apps/accounts/">
+    <span class="frame" style="view-transition-name: art-accounts"><img src="/assets/img/gallery/accounts.svg" width="600" height="800" alt="&ldquo;Balance&rdquo;, the artwork for Full Compass Accounts."></span>
+    <span class="plaque"><span class="num">02</span><span class="kind">Accounts production</span><strong>Full Compass Accounts</strong><span class="line">Year-end accounts from the trial balance.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+<li class="piece left" id="room-3" style="--i:2" data-name="Full Compass Books" data-kind="Bookkeeping and VAT">
+  <a href="/apps/books/">
+    <span class="frame" style="view-transition-name: art-books"><img src="/assets/img/gallery/books.svg" width="600" height="800" alt="&ldquo;Day book&rdquo;, the artwork for Full Compass Books."></span>
+    <span class="plaque"><span class="num">03</span><span class="kind">Bookkeeping and VAT</span><strong>Full Compass Books</strong><span class="line">Bookkeeping and VAT returns on the accounts&#x27; own chart.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+<li class="piece right" id="room-4" style="--i:3" data-name="Full Compass Business Tax" data-kind="Corporation tax">
+  <a href="/apps/business-tax/">
+    <span class="frame" style="view-transition-name: art-business-tax"><img src="/assets/img/gallery/business-tax.svg" width="600" height="800" alt="&ldquo;Structure&rdquo;, the artwork for Full Compass Business Tax."></span>
+    <span class="plaque"><span class="num">04</span><span class="kind">Corporation tax</span><strong>Full Compass Business Tax</strong><span class="line">Tax computations and CT600 returns from the accounts.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+<li class="piece left" id="room-5" style="--i:4" data-name="Full Compass Personal Tax" data-kind="Self Assessment">
+  <a href="/apps/personal-tax/">
+    <span class="frame" style="view-transition-name: art-personal-tax"><img src="/assets/img/gallery/personal-tax.svg" width="600" height="800" alt="&ldquo;Return&rdquo;, the artwork for Full Compass Personal Tax."></span>
+    <span class="plaque"><span class="num">05</span><span class="kind">Self Assessment</span><strong>Full Compass Personal Tax</strong><span class="line">Self Assessment for individuals, sole traders and partners.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+<li class="piece right" id="room-6" style="--i:5" data-name="Full Compass Pay" data-kind="Payroll">
+  <a href="/apps/pay/">
+    <span class="frame" style="view-transition-name: art-pay"><img src="/assets/img/gallery/pay.svg" width="600" height="800" alt="&ldquo;Payday&rdquo;, the artwork for Full Compass Pay."></span>
+    <span class="plaque"><span class="num">06</span><span class="kind">Payroll</span><strong>Full Compass Pay</strong><span class="line">Payroll for client companies and their directors.</span><span class="enter">Enter the room</span></span>
+  </a>
+</li>
+      </ol>
+      <div class="endwall">
+        <img src="/assets/img/mark.svg" alt="" width="132" height="132">
+        <h2>Full Compass Accountancy Suite</h2>
+        <p>One setup installs the start page and the apps you choose. Version <span data-fc="setup-version">0.4.4</span>, free to try.</p>
+        <p><a class="button gold" href="/download/">Download for Windows</a></p>
+      </div>
+    </div>
+
+    <div class="hud" hidden>
+      <button type="button" class="step prev" aria-label="Back to the previous picture">&larr;</button>
+      <p class="caption" aria-live="polite"></p>
+      <button type="button" class="step next" aria-label="On to the next picture">&rarr;</button>
+      <ol class="dots" aria-label="Places in the corridor"></ol>
+    </div>
+
   </div>
-</div>
+</section>
 
 <section>
   <div class="wrap">
@@ -71,53 +126,7 @@
       <p>Full Compass is still being built and checked. It has not been recognised or approved by HMRC or Companies House. Please try it with the demonstration data, check anything it works out, and don't use it to send real returns, payroll submissions, VAT returns or company accounts yet.</p>
     </div>
 
-    <p class="eyebrow"><b>02</b> The apps</p>
-    <h2>Everything a small practice does, in its own app</h2>
-    <p class="lead">A start page and five apps, grouped as the work is: accounts, tax and payroll. Install the ones you need; add the others later.</p>
-    <ul class="app-grid">
-      <li><a class="app-card" href="/apps/#start-page">
-        <img src="/assets/img/apps/suite.png" alt="" width="56" height="56">
-        <span class="kind">Start page</span>
-        <h3>Full Compass Accountancy Suite</h3>
-        <p>Your clients across the apps, the practice's deadlines, and every app one click away.</p>
-      </a></li>
-      <li><a class="app-card" href="/apps/#accounts">
-        <img src="/assets/img/apps/accounts.png" alt="" width="56" height="56">
-        <span class="kind">Accounts production</span>
-        <h3>Full Compass Accounts</h3>
-        <p>Postings, trial balance and statutory accounts for companies, sole traders and partnerships.</p>
-      </a></li>
-      <li><a class="app-card" href="/apps/#books">
-        <img src="/assets/img/apps/books.png" alt="" width="56" height="56">
-        <span class="kind">Bookkeeping and VAT</span>
-        <h3>Full Compass Books</h3>
-        <p>Invoices, bills, banking and VAT returns, kept on the same chart of accounts as the accounts.</p>
-      </a></li>
-      <li><a class="app-card" href="/apps/#business-tax">
-        <img src="/assets/img/apps/business-tax.png" alt="" width="56" height="56">
-        <span class="kind">Corporation tax</span>
-        <h3>Full Compass Business Tax</h3>
-        <p>Tax computations and CT600 returns from the accounts, and sole traders' self-employment pages.</p>
-      </a></li>
-      <li><a class="app-card" href="/apps/#personal-tax">
-        <img src="/assets/img/apps/personal-tax.png" alt="" width="56" height="56">
-        <span class="kind">Self Assessment</span>
-        <h3>Full Compass Personal Tax</h3>
-        <p>Self Assessment computations and returns, with sole traders' figures taken from Business Tax.</p>
-      </a></li>
-      <li><a class="app-card" href="/apps/#pay">
-        <img src="/assets/img/apps/pay.png" alt="" width="56" height="56">
-        <span class="kind">Payroll</span>
-        <h3>Full Compass Pay</h3>
-        <p>PAYE, National Insurance, statutory pay, pensions and RTI for the companies on the payroll.</p>
-      </a></li>
-    </ul>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="eyebrow"><b>03</b> Shared by every app</p>
+    <p class="eyebrow"><b>01</b> Shared by every app</p>
     <h2>Built the careful way</h2>
     <ul class="principles">
       <li>
@@ -126,7 +135,7 @@
       </li>
       <li>
         <h3>Your data stays with you</h3>
-        <p>Everything is kept in one data file on your own computer, with payroll in its own file beside it. There is no account to create with us and nothing in the cloud.</p>
+        <p>Everything is kept in a data file on your own computer. There is no account to create with us and nothing in the cloud.</p>
       </li>
       <li>
         <h3>Worked from the law</h3>
@@ -142,16 +151,16 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow"><b>04</b> Get started</p>
+    <p class="eyebrow"><b>02</b> Get started</p>
     <h2>Up and running in a few minutes</h2>
     <ol class="steps three">
       <li>
         <h3>Download the setup</h3>
-        <p>One file, about 80 MB, for Windows 10 and 11.</p>
+        <p>One file, for Windows 10 and 11.</p>
       </li>
       <li>
         <h3>Tick the apps you want</h3>
-        <p>Install just for you, with no administrator needed. Add more apps later from the start page.</p>
+        <p>The start page always comes. Add more apps later from its Tools menu.</p>
       </li>
       <li>
         <h3>Try the demonstration data</h3>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="800" viewBox="0 0 600 800">
+  <title>Gallery business-tax</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <rect x="0" y="0" width="600" height="800" fill="#2f4d78"/>
+    <circle cx="476" cy="136" r="36" fill="#e0645a"/>
+    <polygon points="104,304 300,184 496,304" fill="#e2b866"/>
+    <rect x="104" y="316" width="392" height="30" fill="#f7f4ec"/>
+    <rect x="128" y="366" width="48" height="216" fill="#f7f4ec"/>
+    <rect x="226.7" y="366" width="48" height="216" fill="#f7f4ec"/>
+    <rect x="325.4" y="366" width="48" height="216" fill="#f7f4ec"/>
+    <rect x="424.1" y="366" width="48" height="216" fill="#f7f4ec"/>
+    <rect x="92" y="600" width="416" height="28" fill="#f7f4ec"/>
+    <rect x="68" y="640" width="464" height="24" fill="#f7f4ec"/>
+    <rect x="60" y="716" width="480" height="3" fill="#e2b866"/>
+    <rect x="390" y="732" width="150" height="3" fill="#f7f4ec"/>
+  </g>
+</svg>

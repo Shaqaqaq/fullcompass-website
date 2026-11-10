@@ -13,9 +13,15 @@ A page starts with a comment of settings:
     description: One sentence for search results and link previews.
     nav: download        (which header link is the current page; optional)
     script: yes          (load assets/site.js, for pages that read the update site; optional)
+    gallery: yes         (load assets/gallery.js, the walk down the corridor; optional)
     -->
+
+The six modules are in src/modules.json. Each gets a room, apps/<slug>/, from src/partials/room.html, and pages can
+place {{gallery}} (the corridor's framed pieces) and {{rooms}} (a plain list of the rooms).
 """
+import hashlib
 import html
+import json
 import pathlib
 import re
 import sys
@@ -50,20 +56,85 @@ def target(name):
     return ROOT / stem / "index.html", f"/{stem}/"
 
 
+def stamp(asset):
+    """A few characters of the file's hash, so a changed stylesheet or script is fetched afresh."""
+    return hashlib.sha256((ROOT / "assets" / asset).read_bytes()).hexdigest()[:8]
+
+
+def esc(s):
+    return html.escape(s, quote=True)
+
+
+def modules():
+    return json.loads((SRC / "modules.json").read_text())
+
+
+def gallery_pieces(mods):
+    """The corridor's pieces: odd numbers hang on the left, even on the right."""
+    out = []
+    for i, m in enumerate(mods):
+        side = "left" if i % 2 == 0 else "right"
+        out.append(
+            f'<li class="piece {side}" id="room-{i + 1}" style="--i:{i}" data-name="{esc(m["name"])}" data-kind="{esc(m["kind"])}">\n'
+            f'  <a href="/apps/{m["slug"]}/">\n'
+            f'    <span class="frame" style="view-transition-name: art-{m["slug"]}"><img src="/assets/img/gallery/{m["art"]}.svg" width="600" height="800" alt="&ldquo;{esc(m["piece"])}&rdquo;, the artwork for {esc(m["name"])}."></span>\n'
+            f'    <span class="plaque"><span class="num">{i + 1:02d}</span><span class="kind">{esc(m["kind"])}</span>'
+            f'<strong>{esc(m["name"])}</strong><span class="line">{esc(m["line"])}</span><span class="enter">Enter the room</span></span>\n'
+            f'  </a>\n</li>')
+    return "\n".join(out)
+
+
+def room_list(mods):
+    out = []
+    for i, m in enumerate(mods):
+        out.append(
+            f'<li><a class="room-row" href="/apps/{m["slug"]}/">'
+            f'<span class="num">{i + 1:02d}</span>'
+            f'<img src="/assets/img/gallery/{m["art"]}.svg" width="600" height="800" alt="">'
+            f'<span><span class="kind">{esc(m["kind"])}</span><strong>{esc(m["name"])}</strong><span class="line">{esc(m["summary"])}</span></span>'
+            f'</a></li>')
+    return "\n".join(out)
+
+
+def room_pages(mods):
+    """A page of source for each module's room, from src/partials/room.html."""
+    template = (SRC / "partials" / "room.html").read_text()
+    pages = {}
+    for i, m in enumerate(mods):
+        prev, nxt = mods[i - 1], mods[(i + 1) % len(mods)]
+        points = "\n".join(f'      <li><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in m["points"])
+        fields = {
+            "num": f"{i + 1:02d}", "n": str(i + 1), "slug": m["slug"], "art": m["art"], "piece": esc(m["piece"]), "kind": esc(m["kind"]),
+            "name": esc(m["name"]), "summary": esc(m["summary"]), "links": esc(m["links"]), "points": points,
+            "prev_slug": prev["slug"], "prev_name": esc(prev["short"]), "prev_num": f"{(i - 1) % len(mods) + 1:02d}",
+            "next_slug": nxt["slug"], "next_name": esc(nxt["short"]), "next_num": f"{(i + 1) % len(mods) + 1:02d}",
+        }
+        text = template
+        for key, value in fields.items():
+            text = text.replace("{{" + key + "}}", value)
+        pages[f"apps/{m['slug']}.html"] = text
+    return pages
+
+
 def build():
     head = (SRC / "partials" / "head.html").read_text()
     header = (SRC / "partials" / "header.html").read_text()
     footer = (SRC / "partials" / "footer.html").read_text()
     built = {}
-    for page in sorted((SRC / "pages").glob("*.html")):
-        values, body = settings(page.read_text(), page.name)
-        out, path = target(page.name)
+    mods = modules()
+    sources = {page.name: page.read_text() for page in sorted((SRC / "pages").glob("*.html"))}
+    sources.update(room_pages(mods))
+    for name, source in sources.items():
+        source = source.replace("{{gallery}}", gallery_pieces(mods)).replace("{{rooms}}", room_list(mods))
+        values, body = settings(source, name)
+        out, path = target(name)
         title = values["title"]
-        full_title = "Full Compass Accountancy Suite" if page.name == "index.html" else f"{title} | Full Compass Accountancy Suite"
+        full_title = "Full Compass Accountancy Suite" if name == "index.html" else f"{title} | Full Compass Accountancy Suite"
         h = head.replace("{{title}}", html.escape(full_title)).replace("{{description}}", html.escape(values["description"]))
         h = h.replace("{{url}}", SITE + path)
-        if values.get("script") == "yes":
-            h = h.replace("{{script}}", '<script src="/assets/site.js" defer></script>')
+        scripts = [f'<script src="/assets/{file}.js" defer></script>' for key, file in (("script", "site"), ("gallery", "gallery")) if values.get(key) == "yes"]
+        if scripts:
+            h = h.replace("{{script}}", "\n".join(scripts))
         else:
             h = h.replace("{{script}}\n", "").replace("{{script}}", "")
         nav = header
@@ -71,6 +142,8 @@ def build():
         if current:
             nav = nav.replace(f'data-nav="{current}"', 'aria-current="page"')
         nav = re.sub(r' data-nav="[a-z-]+"', "", nav)
+        for asset in ("site.css", "site.js", "gallery.js"):
+            h = h.replace(f'/assets/{asset}"', f'/assets/{asset}?v={stamp(asset)}"')
         text = "<!doctype html>\n" + '<html lang="en-GB">\n' + h + "<body>\n" + nav + body.strip() + "\n" + footer + "</body>\n</html>\n"
         built[out] = text
     return built
@@ -105,6 +178,7 @@ def check(built):
             if re.match(r"^(https?:|mailto:|#$)", ref):
                 continue
             path, _, frag = ref.partition("#")
+            path = path.partition("?")[0]
             if not path:
                 if frag and frag not in p.ids:
                     problems.append(f"{out.relative_to(ROOT)}: no #{frag} on the page")

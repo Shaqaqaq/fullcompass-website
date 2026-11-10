@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="800" viewBox="0 0 600 800">
+  <title>Gallery books</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <rect x="0" y="0" width="600" height="800" fill="#e2b866"/>
+    <polygon points="84,262 300,306 300,622 84,578" fill="#f7f4ec"/>
+    <polygon points="300,306 516,262 516,578 300,622" fill="#ffffff"/>
+    <line x1="116" y1="330" x2="268" y2="361" fill="none" stroke="#1f3a5f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="116" y1="378" x2="268" y2="409" fill="none" stroke="#1f3a5f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="116" y1="426" x2="268" y2="457" fill="none" stroke="#1f3a5f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="116" y1="474" x2="268" y2="505" fill="none" stroke="#1f3a5f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="116" y1="522" x2="268" y2="553" fill="none" stroke="#1f3a5f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="334,555.716 360,550.416 360,480.416 334,485.716" fill="#1f3a5f"/>
+    <polygon points="376,547.148 402,541.848 402,421.848 376,427.148" fill="#1f3a5f"/>
+    <polygon points="418,538.58 444,533.28 444,437.28 418,442.58" fill="#1f3a5f"/>
+    <polygon points="460,530.012 486,524.712 486,354.712 460,360.012" fill="#e0645a"/>
+    <line x1="300" y1="306" x2="300" y2="622" fill="none" stroke="#1f3a5f" stroke-width="6" stroke-linejoin="round"/>
+    <polygon points="440,277.5 474,270.5 474,372 457,356 440,379" fill="#e0645a"/>
+    <rect x="60" y="700" width="480" height="3" fill="#1f3a5f"/>
+    <rect x="60" y="716" width="150" height="3" fill="#f7f4ec"/>
+  </g>
+</svg>

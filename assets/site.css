@@ -518,3 +518,5 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) {
   .face .needle, .reading { transition: none; }
 }
+
+.steps.narrow { max-width: var(--text); }

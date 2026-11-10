@@ -45,7 +45,23 @@
     set("setup-sha", d.sha256);
     set("setup-file", url.slice(url.lastIndexOf("/") + 1));
     all('[data-fc="setup-link"]').forEach(function (a) { a.href = url; });
+    setupUrl = url;
   }
+
+  // The Download links fetch the setup itself. One clicked before the list has been read waits for it;
+  // if the list can't be read, the link goes to the update site, as written in the page.
+  var setupUrl = null, listRead = false, waiting = null;
+  function listDone() {
+    listRead = true;
+    if (waiting) { var go = waiting; waiting = null; window.location.href = setupUrl || go; }
+  }
+  all('[data-fc="setup-link"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (listRead || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+      e.preventDefault();
+      waiting = a.href;
+    });
+  });
 
   function showReleases(m) {
     var box = document.querySelector('[data-fc="releases"]');
@@ -82,5 +98,6 @@
       if (m.published) set("published", longDate(m.published));
       document.documentElement.classList.add("fc-live");
     })
-    .catch(function () { /* keep the written fallback */ });
+    .catch(function () { /* keep the written fallback */ })
+    .then(listDone);
 })();

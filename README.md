@@ -14,7 +14,7 @@ https://updates.fullcompass.co.uk/ (its own repository, `fullcompass-updates`).
 | `src/modules.json` | The six apps: name, summary, what each does. The build makes the home page's compass and tiles and a page for each app (`apps/<slug>/`, from `src/partials/app.html`) from it |
 | `src/partials/` | The shared `<head>`, header and footer |
 | `tools/build.py` | Builds the pages and checks every internal link and image |
-| `index.html`, `apps/`, `download/`, `whats-new/`, `help/`, `privacy/`, `contact/`, `404.html` | The built pages GitHub Pages serves (don't edit these: edit `src/` and build) |
+| `index.html`, `apps/`, `whats-new/`, `help/`, `privacy/`, `contact/`, `404.html` | The built pages GitHub Pages serves (don't edit these: edit `src/` and build) |
 | `assets/site.css` | The one stylesheet: light and dark by the visitor's system setting |
 | `assets/site.js` | Reads `https://updates.fullcompass.co.uk/updates.json` (the signed list the start page reads) for the setup's version, size, SHA-256 and link, and each app's release notes. The pages keep a written fallback if it can't be read |
 | `assets/img/art/` | A picture for each app, drawn in VectorCraft (`design/gallery-artworks.py` draws them through its control channel; the documents are `design/gallery-*.vectorcraft`) |

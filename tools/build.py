@@ -12,7 +12,6 @@ A page starts with a comment of settings:
     title: Download
     description: One sentence for search results and link previews.
     nav: download        (which header link is the current page; optional)
-    script: yes          (load assets/site.js, for pages that read the update site; optional)
     -->
 
 The six apps are in src/modules.json. Each gets a page, apps/<slug>/, from src/partials/app.html, and pages can
@@ -131,11 +130,8 @@ def build():
         full_title = "Full Compass Accountancy Suite" if name == "index.html" else f"{title} | Full Compass Accountancy Suite"
         h = head.replace("{{title}}", html.escape(full_title)).replace("{{description}}", html.escape(values["description"]))
         h = h.replace("{{url}}", SITE + path)
-        scripts = [f'<script src="/assets/{file}.js" defer></script>' for key, file in (("script", "site"),) if values.get(key) == "yes"]
-        if scripts:
-            h = h.replace("{{script}}", "\n".join(scripts))
-        else:
-            h = h.replace("{{script}}\n", "").replace("{{script}}", "")
+        # Every page loads the script: its Download links fetch the setup named by the update site.
+        h = h.replace("{{script}}", '<script src="/assets/site.js" defer></script>')
         nav = header
         current = values.get("nav")
         if current:

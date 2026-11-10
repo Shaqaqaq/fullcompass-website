@@ -520,3 +520,7 @@ pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 
 .steps.narrow { max-width: var(--text); }
+
+/* The home page is the opening alone: it fills the window above the footer */
+.hero { min-height: calc(100vh - 73px); display: grid; align-items: center; }
+.hero > .wrap { width: 100%; }

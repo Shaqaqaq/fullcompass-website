@@ -76,7 +76,7 @@ def dial(mods):
         left, top = 50 + 41 * math.cos(angle), 50 + 41 * math.sin(angle)
         stations.append(f'<a class="station s{i}" href="/apps/{m["slug"]}/" style="left:{left:.2f}%;top:{top:.2f}%">{esc(m["short"])}</a>')
         readings.append(
-            f'<p class="reading r{i}"><span class="num">{i + 1:02d} &middot; {esc(m["kind"])}</span>'
+            f'<p class="reading r{i}">'
             f'<strong>{esc(m["name"])}</strong><span>{esc(m["line"])}</span></p>')
     return "\n".join(stations), "\n".join(readings)
 
